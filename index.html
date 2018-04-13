@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/templatemo-style.css">
+<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+<style>
+
+ row{margin: 0%;}       
+div#quad { 
+  background-color: #000; 
+  font-size: 0; width: 60%; 
+  margin: 0 auto;
+  box-shadow: 0 0 12px rgba(0,0,0,0.8);
+  line-height: 0%;
+  
+}
+div#quad figure { 
+  margin: 0; width: 50%; 
+  height: auto; transition: 1s; 
+  display: inline-block; 
+  position: relative; overflow: hidden; 
+  
+}
+div#quad figure:hover { cursor: pointer; z-index: 4; }
+div#quad figure img { width: 100%; height: auto; }
+div#quad figure:nth-child(1) { transform-origin: top left; }
+div#quad figure:nth-child(2) { transform-origin: top right; }
+div#quad figure:nth-child(3) { transform-origin: bottom left; }
+div#quad figure:nth-child(4) { transform-origin: bottom right; }
+div#quad figure figcaption { 
+  margin: 0; opacity: 0; 
+  background: rgba(0,0,0,0.3); 
+  color: #fff; padding: .6rem; 
+  font-size: .5rem; 
+  position: absolute; 
+  bottom: 0; width: 100%;
+  transition: 1s 1s opacity; 
+    line-height: 95%;
+}
+.expanded { transform: scale(2); z-index: 5;  }
+div#quad figure.expanded figcaption { opacity: 1; }
+div.full figure:not(.expanded) { pointer-events: none; }
+
+@-webkit-keyframes full-circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
+}
+@keyframes full-circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
+}
+@-webkit-keyframes pop {
+  0% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  50% {
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
+@keyframes pop {
+  0% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  50% {
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes rotate-vertical {
+  0% {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  }
+}
+@keyframes rotate-vertical {
+  0% {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  }
+}
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: white;
+}
+
+p{
+  font-size: 1.3rem;
+  letter-spacing: 1px;  
+}
+
+.form-actions {
+   
+    background-color: transparent;
+    text-align: center;
+    padding: 20px;    
+}
+button{
+  border: 2px solid rgb(47, 56, 160);
+    color: #fff;
+    margin-top: 30px;
+    background-color: transparent !important;
+    padding: 1.2rem 3.2rem !important;
+    font-size: 1.3rem !important;
+    border-radius: 50px !important;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: #008CBA !important;
+    color: white !important;
+}
+
+.parallax{ 
+  margin-left:23.5%;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 0.95;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+
+}
+.bgimg-1 {
+  background-image: url("img/web_colors.jpeg"),linear-gradient(rgba(0, 0, 0, 0.624),rgba(0,0,0,0.100));
+  background-blend-mode: overlay;
+  background-size: contain;
+  background-position:  center top;
+  min-height: 95vh;
+}
+
+
+.bgimg-2 {
+  background-image: url("img/background.jpeg");
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+}
+
+.bgimg-3 {
+  background-image: url("img/3.jpg");
+  min-height: 400px;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+.header {
+  position: relative;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 50px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+.about{
+  padding: 4rem 15rem;
+  text-align: center;
+}
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+.white {
+  font-size: 42px;
+  font-family: 'robotobold';
+  color: rgb(255, 255, 255)!important;
+  margin-bottom: 30px;
+  margin-top: 280px;
+}
+
+.nav-container ul {
+  list-style-type: none;
+  padding: 0;
+ 
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+.nav-container ul li {
+  display: inline-block;
+}
+.nav-container ul li a {
+  position: relative;
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+  
+  margin: 6px 10px;
+  text-align: center;
+  color: #E5FFF4;
+}
+
+li.html5:hover {
+  -webkit-animation: pop .3s 2;
+          animation: pop .3s 2;
+}
+
+li.code:hover {
+  -webkit-animation: down-bump .3s 2;
+          animation: down-bump .3s 2;
+}
+
+li.css3:hover {
+  -webkit-animation: full-circle 1.1s ease-out;
+          animation: full-circle 1.1s ease-out;
+}
+
+li.wordpress:hover {
+  -webkit-animation: rotate-vertical 1.1s ease-out;
+          animation: rotate-vertical 1.1s ease-out;
+}
+li.code:hover {
+  -webkit-animation: pop .3s 2;
+          animation: pop .3s 2;
+}
+
+.logo-icons .fa{
+  border-radius: 50%;
+  padding: 20%;
+  }
+.logo-icons .fa-css3{background-color:#1572B7;} 
+.logo-icons .fa-html5{background-color:#E54D26; padding: 1rem;}
+.logo-icons .fa-code{background-color:#D72B2B;}
+.logo-icons .fa-wordpress{background-color:#0085AE;} 
+.logo-icons .fa-linux{background-color:#FBC002;color:#333;}
+</style>
+</head>
+
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+<!-- Mobile Nav-->  
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="img/gerald.jpg" alt="Volton">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Gerald Ingraham</h3>
+                                <p class="profile-description">Web Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul class="navigation">
+                        <li><a href="#top"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="#about"><i class="fa fa-user"></i>About</a></li>
+                        <li><a href="#projects"><i class="fa fa-newspaper-o"></i>Work</a></li>
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+<!-- /Mobile Nav-->  
+
+<!-- Sidebar Nav-->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+          <!-- top-section -->
+            <div class="top-section">
+                <div class="profile-image">
+                    <img src="img/gerald.jpg" alt="Volton">
+                </div>
+                <h3 class="profile-title">Gerald Ingraham</h3>
+                <p class="profile-description">Full-Stack Web Developer</p>
+            </div> 
+          <!-- /top-section -->
+          
+          <!-- /main-navigation -->
+            <div class="main-navigation">
+                <ul class="navigation">
+                    <li><a href="#top"><i class="fa fa-globe"></i>Welcome</a></li>
+                    <li><a href="#about"><i class="fa fa-pencil"></i>About</a></li>
+                    <li><a href="#projects"><i class="fa fa-paperclip"></i>Work</a></li>
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact</a></li>
+                </ul>
+            </div> 
+          <!-- /main-navigation -->
+          
+          <!-- social-icons -->
+            <div class="social-icons">
+                <ul>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div> 
+          <!-- /social-icons -->  
+        </div> 
+<!-- /sidebar Nav -->
+
+
+        <div class="parallax">
+<!-- Main Section -->          
+            <div class="bgimg-1" id="top">
+              <div class="caption">
+                  
+                  <div class="welcome-text">
+                      <h2>Responsive Solutions |Sites | Applications and WordPress Development</h2>
+                      
+                  </div>
+              </div>
+            </div>
+<!-- /Main Section -->
+
+<!-- About Section -->
+                  <div class="page-section" id="about">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="header">
+                        <h4>Learn About Me</h4>
+                      </div>
+                          <div class='nav-container row1 logo-icons '>
+
+                            <ul>
+                                <li class='code'>
+                                  <i class="fa fa-github fa-3x"></i>
+                                  </a>
+                                </li>
+
+                                <li class='html5'>                             
+                                    <i class='fa fa-html5 fa-1x'></i>
+                                  </a>
+                                </li>
+                               
+                                <li class='wordpress'>
+                                    <i class='fa fa-wordpress fa-3x'></i>
+                                  </a>
+                                </li>
+                                <li class='css3'>
+                                    <i class='fa fa-css3 fa-2x'></i>
+                                  </a>
+                                </li>
+
+                                <li class='code'>
+                                    <i class='fa fa-code fa-1x'></i>
+                                  </a>
+                                </li>
+                            </ul>
+                            <ul>
+                              <li class='wordpress'>
+                                  <i class='fa fa-wordpress fa-2x'></i>
+                                </a>
+                              </li>
+                              <li class='code'>
+                                  <i class='fa fa-code fa-1x'></i>
+                                </a>
+                              </li>
+                              <li class='html5'>                             
+                                  <i class='fa fa-html5 fa-1x'></i>
+                                </a>
+                              </li>
+                              <li class='code'>
+                                <i class="fa fa-github fa-2x"></i>
+                                </a>
+                              </li>
+
+                              <li class='wordpress'>
+                                  <i class='fa fa-wordpress fa-3x'></i>
+                                </a>
+                              </li>
+                              <li class='html5'>
+                                  <i class='fa fa-html5 fa-2x'></i>
+                                </a>
+                              </li>
+                             
+                              <li class='code'>
+                                  <i class='fa fa-code fa-3x'></i>
+                                </a>
+                              </li>
+                            
+                            </ul>
+                          </div>
+                          <div class='nav-container row1 logo-icons '>
+                            <ul>
+                                <li class='css3'>
+                                    <i class='fa fa-css3 fa-3x'></i>
+                                  </a>
+                                </li>
+                              <li class='html5'>                             
+                                  <i class='fa fa-html5 fa-1x'></i>
+                                </a>
+                              </li>
+                              <li class='html5'>
+                                  <i class='fa fa-html5 fa-2x'></i>
+                                </a>
+                              </li>
+                              <li class='css3'>
+                                  <i class='fa fa-css3 fa-2x'></i>
+                                </a>
+                              </li>
+                              <li class='code'>
+                                <i class="fa fa-github fa-1x"></i>
+                              </a>
+                            </li>
+
+                              <li class='code'>
+                                  <i class='fa fa-code fa-1x'></i>
+                                </a>
+                              </li>
+                              <li class='html5'>
+                                  <i class='fa fa-html5 fa-2x'></i>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          
+                        <p class="about">I'm a freelance web designer &amp; developer based in the Bay Area, CA. I'm experienced in designing and developing custom mobile-ready websites from scratch or by leveraging front-end frameworks such as Bootstrap or Materialize. Wordpress my prefered CMS, boasts a client-friendly administrative interface allowing you to easily update your website's content after launch.</p>
+                        <hr>
+                      </div>
+                    </div> 
+                  </div>
+<!-- /About Section-->
+                  
+<!-- Projects Section -->
+                  <div class="bgimg-2">                 
+                    <div id="projects">
+                      <div class="row" style="padding-top: 80px;">
+                        <div class="col-md-12">
+                            <div class="header">
+                              <h4>My Recent Work</h4>
+                            </div>
+                        </div>
+                        <!--Gallery-->
+                        <div class="row projects-holder">
+                            <div id="quad">
+                                <figure>
+                                <img src="img/cloud9screenshot.png" alt="rose-red-wine">
+                                <figcaption style="text-align:center;"><h1 style="color:white; font-weight:bolder;">Cloud Nine Massage</h1><br>
+                                    <div><br></div>
+                                    <h2>Chris was looking for an updated design to his current website. Budget constraints made a customized template the best solution. The final product was a responsive, parallax site with a hero landing page. 
+                                    
+                                    </h2>
+                                    <div><br></div> 
+                                    <a href="http://www.cloudninechairmassage.com/" class="btn btn-info" role="button" style="font-size:8px;">Launch Site</a>
+                                </figcaption>
+                                </figure>
+
+                                <figure>
+                                  <img src="img/xclusiveMagscreenshot.png" alt>
+                                  <figcaption style="text-align:center;"><h2 style="color:white; font-weight:bolder;">Xclusive Magazine</h2><br>
+                                    <div><br></div>
+                                    <h2>My relative wanted a digital companion to his print magazine which releases quarterly. We settled on a masonry style Pintrest like design. A WordPress blog was the best solution due to it's scalability.                               
+                                    </h2>
+                                    <div><br></div> 
+                                    <a href="http://www.thexclusivemag.com/" class="btn btn-info" role="button" style="font-size:8px;">Launch Site</a>
+                                </figcaption>
+                                </figure>
+
+                                <figure>
+                                  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/guinness-barrels.jpg" alt>
+                                  <figcaption>Guinness Barrels, Dublin</figcaption>
+                                </figure>
+
+                                <figure>
+                                  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/crystal-skull-vodka.jpg" alt>
+                                  <figcaption>Crystal Skull Vodka</figcaption>
+                                </figure>
+                            </div>
+                        </div> 
+                      </div>
+                        <hr>
+                    </div>
+                  </div>
+<!-- /Projects Section -->
+
+<!-- Contact Section -->
+                
+                      <!-- CONTACT -->
+                      <div class="page-section" id="contact">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <h4 class="header">Lets Grab a Coffee</h4>
+                                  <p class="about">I'm currently accepting new projects and would love to hear abbout yours. Please take a minute and tell me a little about it. After you introduce yourself and your project, I'll get in touch with you to schedule a time to chat. You should expect to hear from me in a day or so.</p>
+                              </div>
+                          
+
+                            <div class="col-md-12" style="padding-right:350px; padding-left:350px; padding-top:30px;">
+                                <form>
+                                    <div class="form-row">
+
+                                          <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" id="name" placeholder="Name*">
+                                          </div>
+
+                                          <div class="form-group col-md-6">                                 
+                                            <input type="email" class="form-control" id="email" placeholder="Email*">
+                                          </div>
+                                      
+                                    </div>
+                                  
+                                 
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <input type="text" class="form-control" id="inputAddress2" placeholder="Phone Number">
+                                        </div>
+
+                                        <div class="form-group col-md-6">                                     
+                                          <input type="text" class="form-control" id="website" placeholder="Website">
+                                        </div>
+                                    </div>  
+
+                                    <div class="form-group col-md-12">                                    
+                                        <textarea class="form-control" rows="5" id="comment" placeholder="Tell me what you hope to accomplish? I'd love to help! Timeline and budget details are also appreciated.*"></textarea>
+                                    </div>
+
+                                    <div class="form-actions col-md-12">
+                                      <button type="submit" class="button">Submit</button>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>       
+                           </div>
+                           <hr>      
+                      </div> 
+                   
+
+<!-- /Contact Section -->
+
+<!-- Footer -->
+                  <div class="row" id="footer">
+                      <div class="col-md-12 text-center">
+                          <ul class="copyright">
+                              <p>
+                                <br>Copyright © <script language="JavaScript">
+
+                  var months=new Array(13);
+                  months[1]="January";
+                  months[2]="February";
+                  months[3]="March";
+                  months[4]="April";
+                  months[5]="May";
+                  months[6]="June";
+                  months[7]="July";
+                  months[8]="August";
+                  months[9]="September";
+                  months[10]="October";
+                  months[11]="November";
+                  months[12]="December";
+                  var time=new Date();
+                  var lmonth=months[time.getMonth() + 1];
+                  var date=time.getDate();
+                  var year=time.getYear();
+                  if (year < 2000)    
+                  year = year + 1900;
+                  document.write(" " + year + " ");
+
+                  </script> Mango WebWorks, L.L.C.&nbsp;&nbsp;•&nbsp;&nbsp;All rights reserved.
+                            </p>
+                          </ul>
+                      </div>
+                  </div>
+<!-- /Footer -->
+        </div>
+<!-- /Parallax Section -->
+
+<script src="js/vendor/jquery-1.10.2.min.js"></script>
+<script src="js/min/plugins.min.js"></script>
+<script src="js/min/main.min.js"></script>
+<script>
+var quadimages = document.querySelectorAll("#quad figure");
+for(i=0; i<quadimages.length; i++) {
+quadimages[i].addEventListener('click', function(){ this.classList.toggle("expanded"); quad.classList.toggle("full") }); 
+}
+
+
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 100) {
+        $(".welcome-text h2 ").addClass("white");
+    } else {
+        $(".welcome-text h2 ").removeClass("white");
+    }
+});
+</script>
+</body>
+</html>
